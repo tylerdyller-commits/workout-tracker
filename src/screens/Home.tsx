@@ -2,7 +2,9 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { Link, useNavigate } from 'react-router-dom';
 import { db } from '../db/schema';
 import { sortPresetsForHome } from '../db/queries';
-import { formatDayDate, presetMeta } from '../domain/format';
+import { getActiveWorkout, startWorkout } from '../db/workouts';
+import { formatDayDate, formatDuration, presetMeta } from '../domain/format';
+import { useNow } from '../hooks/useNow';
 
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 
@@ -30,8 +32,17 @@ export default function Home() {
   const weekCount = stats?.weekCount ?? 0;
   const last = stats?.last;
 
-  // Starting workouts arrives in Phase 3; for now these open a placeholder.
-  const start = (presetId?: string) => navigate('/workout', { state: { presetId } });
+  const active = useLiveQuery(() => getActiveWorkout(), []);
+  const now = useNow(1000);
+
+  const start = async (presetId?: string) => {
+    if (active) {
+      if (window.confirm('A workout is already in progress. Resume it?')) navigate('/workout');
+      return;
+    }
+    await startWorkout(presetId);
+    navigate('/workout');
+  };
 
   return (
     <main className="screen">
@@ -58,10 +69,22 @@ export default function Home() {
         </Link>
       </header>
 
+      {active && (
+        <Link to="/workout" className="resume-banner">
+          <span className="resume-text">
+            <span className="resume-eyebrow">
+              In progress · {formatDuration((now - active.startedAt) / 1000)}
+            </span>
+            <span className="resume-name">{active.name}</span>
+          </span>
+          <span className="resume-btn">Resume</span>
+        </Link>
+      )}
+
       <section className="stack">
         <h2 className="section-title">Start a preset</h2>
         {sorted.map((p) => (
-          <button key={p.id} type="button" className="card-link" onClick={() => start(p.id)}>
+          <button key={p.id} type="button" className="card-link" onClick={() => void start(p.id)}>
             <div className="card-text">
               <span className="card-title">{p.name}</span>
               <span className="card-sub">{presetMeta(p)}</span>
@@ -76,7 +99,7 @@ export default function Home() {
             No presets yet. <Link to="/presets/new">Create your first preset</Link>.
           </p>
         )}
-        <button type="button" className="dashed-button" onClick={() => start()}>
+        <button type="button" className="dashed-button" onClick={() => void start()}>
           <svg
             aria-hidden="true"
             width="20"

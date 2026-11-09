@@ -17,6 +17,10 @@ export interface StepperProps {
   unit?: string;
   /** Allow typing decimals (weight, miles). */
   allowDecimal?: boolean;
+  /** Compact layout for set rows: no label above; a small caption under the value. */
+  compact?: boolean;
+  /** Caption under the value in compact mode (defaults to unit, then label). */
+  caption?: string;
 }
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
@@ -36,6 +40,8 @@ export default function Stepper({
   decimals,
   unit,
   allowDecimal = false,
+  compact = false,
+  caption,
 }: StepperProps) {
   const [editing, setEditing] = useState(false);
   const [text, setText] = useState('');
@@ -71,10 +77,12 @@ export default function Stepper({
   };
 
   return (
-    <div className="stepper">
-      <label className="stepper-label" htmlFor={id}>
-        {label}
-      </label>
+    <div className={compact ? 'stepper compact' : 'stepper'}>
+      {!compact && (
+        <label className="stepper-label" htmlFor={id}>
+          {label}
+        </label>
+      )}
       <div className="stepper-row">
         <button
           type="button"
@@ -116,8 +124,17 @@ export default function Stepper({
               setEditing(true);
             }}
           >
-            {display}
-            {unit && value != null && <span className="stepper-unit"> {unit}</span>}
+            {compact ? (
+              <>
+                <span className="stepper-num">{display}</span>
+                <span className="stepper-caption">{caption ?? unit ?? label}</span>
+              </>
+            ) : (
+              <>
+                {display}
+                {unit && value != null && <span className="stepper-unit"> {unit}</span>}
+              </>
+            )}
           </button>
         )}
         <button

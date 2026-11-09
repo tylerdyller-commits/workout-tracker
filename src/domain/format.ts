@@ -1,4 +1,4 @@
-import type { DistUnit, Exercise, ExerciseType, Preset, PresetItem } from './types';
+import type { DistUnit, Exercise, ExerciseType, Preset, PresetItem, SetLog } from './types';
 
 /** Seconds → "m:ss", or "h:mm:ss" when an hour or more. */
 export function formatDuration(totalSec: number): string {
@@ -129,4 +129,67 @@ export function presetMeta(p: Pick<Preset, 'items' | 'lastUsedAt'>): string {
   const n = p.items.length;
   const count = `${n} ${n === 1 ? 'exercise' : 'exercises'}`;
   return p.lastUsedAt ? `${count} · Last done ${formatShortDate(p.lastUsedAt)}` : count;
+}
+
+/** Cardio pace: seconds per mile as "m:ss /mi". Undefined without both values. */
+export function formatPace(timeSec?: number, distanceMi?: number): string | undefined {
+  if (!timeSec || !distanceMi || distanceMi <= 0 || timeSec <= 0) return undefined;
+  return `${formatDuration(timeSec / distanceMi)} /mi`;
+}
+
+type SetVals = Pick<SetLog, 'weightLb' | 'reps' | 'timeSec' | 'distance'>;
+
+/**
+ * A set as one line for set rows, e.g. "225 lb × 5", "8 reps +25 lb", "1:00",
+ * "70 lb × 40 yd", "20 yd @ 180 lb", "1.00 mi · 9:30". Missing values show "—".
+ */
+export function setSummary(set: SetVals, ex: Pick<Exercise, 'type' | 'distUnit'>): string {
+  const unit = distUnitFor(ex);
+  const w = set.weightLb != null ? formatWeight(set.weightLb) : '— lb';
+  const d = set.distance != null ? formatDistance(set.distance, unit) : `— ${unit}`;
+  const t = set.timeSec != null ? formatDuration(set.timeSec) : '—:——';
+  const r = set.reps != null ? String(set.reps) : '—';
+  switch (ex.type) {
+    case 'weighted':
+      return `${w} × ${r}`;
+    case 'bodyweight':
+      return `${r} reps${set.weightLb ? ` +${formatWeight(set.weightLb)}` : ''}`;
+    case 'timed':
+      return `${t}${set.weightLb ? ` @ ${formatWeight(set.weightLb)}` : ''}`;
+    case 'carry':
+      return `${w} × ${d}`;
+    case 'distance':
+      return `${d}${set.weightLb ? ` @ ${formatWeight(set.weightLb)}` : ''}`;
+    case 'cardio':
+      return `${d} · ${t}`;
+  }
+}
+
+/** A set in compact form for the "Last time" line, e.g. "225×5", "+25×8", "1.00 mi in 9:30". */
+export function setShort(set: SetVals, ex: Pick<Exercise, 'type' | 'distUnit'>): string {
+  const unit = distUnitFor(ex);
+  const n = (v?: number) => (v != null ? formatNumber(v) : '—');
+  switch (ex.type) {
+    case 'weighted':
+      return `${n(set.weightLb)}×${n(set.reps)}`;
+    case 'bodyweight':
+      return set.weightLb ? `+${n(set.weightLb)}×${n(set.reps)}` : `${n(set.reps)}`;
+    case 'timed':
+    case 'carry':
+    case 'distance':
+      return setSummary(set, ex);
+    case 'cardio': {
+      const parts = [
+        set.distance != null ? formatDistance(set.distance, unit) : undefined,
+        set.timeSec != null ? `in ${formatDuration(set.timeSec)}` : undefined,
+      ].filter(Boolean);
+      const pace = formatPace(set.timeSec, set.distance);
+      return parts.join(' ') + (pace ? ` · ${pace}` : '');
+    }
+  }
+}
+
+/** "Last: 225×5 · 225×5 · 225×4" style list of sets. */
+export function lastTimeLine(sets: SetVals[], ex: Pick<Exercise, 'type' | 'distUnit'>): string {
+  return sets.map((s) => setShort(s, ex)).join(' · ');
 }
