@@ -4,6 +4,7 @@ import { registerSW } from 'virtual:pwa-register';
 import App from './App';
 import { seedIfEmpty } from './db/seed';
 import './styles.css';
+import './components.css';
 
 // First-run seeding of exercises and settings (no-op if already seeded).
 seedIfEmpty().catch((err) => console.error('Seeding failed', err));

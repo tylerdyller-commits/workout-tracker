@@ -1,4 +1,10 @@
-import { Link } from 'react-router-dom';
+import { useLiveQuery } from 'dexie-react-hooks';
+import { Link, useNavigate } from 'react-router-dom';
+import { db } from '../db/schema';
+import { sortPresetsForHome } from '../db/queries';
+import { formatDayDate, presetMeta } from '../domain/format';
+
+const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 
 function todayLabel(): string {
   return new Date().toLocaleDateString('en-US', {
@@ -9,6 +15,24 @@ function todayLabel(): string {
 }
 
 export default function Home() {
+  const navigate = useNavigate();
+  const presets = useLiveQuery(() => db.presets.toArray(), []);
+  const stats = useLiveQuery(async () => {
+    const weekAgo = Date.now() - WEEK_MS;
+    const finished = await db.workouts.where('endedAt').above(0).reverse().sortBy('endedAt');
+    return {
+      weekCount: finished.filter((w) => (w.endedAt ?? 0) >= weekAgo).length,
+      last: finished[0],
+    };
+  }, []);
+
+  const sorted = sortPresetsForHome(presets ?? []);
+  const weekCount = stats?.weekCount ?? 0;
+  const last = stats?.last;
+
+  // Starting workouts arrives in Phase 3; for now these open a placeholder.
+  const start = (presetId?: string) => navigate('/workout', { state: { presetId } });
+
   return (
     <main className="screen">
       <header className="screen-header">
@@ -34,9 +58,67 @@ export default function Home() {
         </Link>
       </header>
 
-      <section style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <section className="stack">
         <h2 className="section-title">Start a preset</h2>
-        <div className="placeholder">Your presets and Quick workout will appear here soon.</div>
+        {sorted.map((p) => (
+          <button key={p.id} type="button" className="card-link" onClick={() => start(p.id)}>
+            <div className="card-text">
+              <span className="card-title">{p.name}</span>
+              <span className="card-sub">{presetMeta(p)}</span>
+            </div>
+            <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="var(--accent)">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </button>
+        ))}
+        {presets && presets.length === 0 && (
+          <p className="placeholder">
+            No presets yet. <Link to="/presets/new">Create your first preset</Link>.
+          </p>
+        )}
+        <button type="button" className="dashed-button" onClick={() => start()}>
+          <svg
+            aria-hidden="true"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          >
+            <path d="M12 5v14M5 12h14" />
+          </svg>
+          Quick workout
+        </button>
+      </section>
+
+      <section className="stat-grid">
+        <div className="card stat">
+          <span className="muted small">Last 7 days</span>
+          <span className="stat-value">
+            {weekCount}{' '}
+            <span className="stat-unit">{weekCount === 1 ? 'workout' : 'workouts'}</span>
+          </span>
+        </div>
+        <div className="card stat">
+          <span className="muted small">Last workout</span>
+          {last ? (
+            <>
+              <span className="stat-name">{last.name}</span>
+              <span className="muted small">
+                {formatDayDate(last.startedAt)} ·{' '}
+                {Math.max(
+                  1,
+                  Math.round(((last.endedAt ?? last.startedAt) - last.startedAt) / 60000),
+                )}{' '}
+                min
+              </span>
+            </>
+          ) : (
+            <span className="muted">None yet</span>
+          )}
+        </div>
       </section>
     </main>
   );
