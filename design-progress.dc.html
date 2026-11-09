@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Progress</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;color:#F2F3F5;background:#0E0F11}
+a{color:#FF6A3D}a:hover{color:#FF8A66}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #0E0F11; box-sizing: border-box; padding: 60px 16px 100px; display: flex; flex-direction: column; gap: 14px; font-variant-numeric: tabular-nums">
+  <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -0.5px">Progress</h1>
+
+  <button aria-label="Choose exercise, current: Back Squat" style="height: 56px; border-radius: 14px; border: none; background: #17191C; color: #F2F3F5; display: flex; align-items: center; gap: 10px; padding: 0 14px">
+    <span style="font-size: 18px; font-weight: 700">Back Squat</span>
+    <span style="font-size: 11px; font-weight: 700; padding: 3px 7px; border-radius: 6px; color: #9AA0A6; background: #24272B">WEIGHTED</span>
+    <svg aria-hidden="true" style="margin-left: auto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+  </button>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+    <div style="padding: 14px; border-radius: 14px; background: #17191C; display: flex; flex-direction: column; gap: 2px">
+      <span style="font-size: 13px; color: #9AA0A6">Max weight</span>
+      <span style="font-size: 28px; font-weight: 700">245 <span style="font-size: 15px; color: #9AA0A6; font-weight: 500">lb</span></span>
+      <span style="font-size: 12px; color: #9AA0A6">Fri, Nov 6 · 3 reps</span>
+    </div>
+    <div style="padding: 14px; border-radius: 14px; background: #17191C; display: flex; flex-direction: column; gap: 2px">
+      <span style="font-size: 13px; color: #9AA0A6">First → now</span>
+      <span style="font-size: 28px; font-weight: 700; color: #3DDC84">+40 <span style="font-size: 15px; font-weight: 500">lb</span></span>
+      <span style="font-size: 12px; color: #9AA0A6">since Sep 3</span>
+    </div>
+  </div>
+
+  <div role="group" aria-label="Date range" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 12px; background: #17191C">
+    <button style="height: 36px; border: none; border-radius: 9px; background: transparent; color: #9AA0A6; font-size: 14px; font-weight: 600">1M</button>
+    <button aria-pressed="true" style="height: 36px; border: none; border-radius: 9px; background: #2A2D32; color: #F2F3F5; font-size: 14px; font-weight: 700">3M</button>
+    <button style="height: 36px; border: none; border-radius: 9px; background: transparent; color: #9AA0A6; font-size: 14px; font-weight: 600">6M</button>
+    <button style="height: 36px; border: none; border-radius: 9px; background: transparent; color: #9AA0A6; font-size: 14px; font-weight: 600">1Y</button>
+    <button style="height: 36px; border: none; border-radius: 9px; background: transparent; color: #9AA0A6; font-size: 14px; font-weight: 600">All</button>
+  </div>
+
+  <figure style="margin: 0; padding: 14px 8px 10px; border-radius: 16px; background: #17191C">
+    <svg role="img" aria-label="Back Squat session max weight rising from 205 lb on Sep 3 to 245 lb on Nov 6" width="342" height="210" viewBox="0 0 342 210">
+      <line x1="40" y1="20" x2="334" y2="20" stroke="#2A2D32" stroke-width="1"></line>
+      <line x1="40" y1="100" x2="334" y2="100" stroke="#2A2D32" stroke-width="1"></line>
+      <line x1="40" y1="180" x2="334" y2="180" stroke="#2A2D32" stroke-width="1"></line>
+      <text x="32" y="24" text-anchor="end" font-size="11" fill="#9AA0A6">250</text>
+      <text x="32" y="104" text-anchor="end" font-size="11" fill="#9AA0A6">225</text>
+      <text x="32" y="184" text-anchor="end" font-size="11" fill="#9AA0A6">200</text>
+      <polyline points="44,164 76,164 108,148 141,132 173,132 205,116 237,100 269,100 302,68 330,36" fill="none" stroke="#FF6A3D" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></polyline>
+      <circle cx="44" cy="164" r="4" fill="#FF6A3D"></circle>
+      <circle cx="76" cy="164" r="4" fill="#FF6A3D"></circle>
+      <circle cx="108" cy="148" r="4" fill="#FF6A3D"></circle>
+      <circle cx="141" cy="132" r="4" fill="#FF6A3D"></circle>
+      <circle cx="173" cy="132" r="4" fill="#FF6A3D"></circle>
+      <circle cx="205" cy="116" r="4" fill="#FF6A3D"></circle>
+      <circle cx="237" cy="100" r="4" fill="#FF6A3D"></circle>
+      <circle cx="269" cy="100" r="4" fill="#FF6A3D"></circle>
+      <circle cx="302" cy="68" r="4" fill="#FF6A3D"></circle>
+      <circle cx="330" cy="36" r="6" fill="#0E0F11" stroke="#FF6A3D" stroke-width="3"></circle>
+      <text x="44" y="202" text-anchor="start" font-size="11" fill="#9AA0A6">Sep 3</text>
+      <text x="173" y="202" text-anchor="middle" font-size="11" fill="#9AA0A6">Oct 1</text>
+      <text x="334" y="202" text-anchor="end" font-size="11" fill="#9AA0A6">Nov 6</text>
+    </svg>
+  </figure>
+
+  <section style="display: flex; flex-direction: column; gap: 0; border-radius: 14px; background: #17191C; overflow: hidden">
+    <div style="display: flex; justify-content: space-between; align-items: center; height: 48px; padding: 0 14px; border-bottom: 1px solid #26292E"><span style="font-size: 15px">Fri, Nov 6</span><span style="font-size: 15px; font-weight: 700">245 lb <span style="color: #9AA0A6; font-weight: 500">× 3</span></span></div>
+    <div style="display: flex; justify-content: space-between; align-items: center; height: 48px; padding: 0 14px; border-bottom: 1px solid #26292E"><span style="font-size: 15px">Thu, Oct 29</span><span style="font-size: 15px; font-weight: 700">235 lb <span style="color: #9AA0A6; font-weight: 500">× 5</span></span></div>
+    <div style="display: flex; justify-content: space-between; align-items: center; height: 48px; padding: 0 14px"><span style="font-size: 15px">Thu, Oct 22</span><span style="font-size: 15px; font-weight: 700">225 lb <span style="color: #9AA0A6; font-weight: 500">× 5</span></span></div>
+  </section>
+
+  <nav aria-label="Tabs" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; background: #17191C; border-top: 1px solid #26292E; display: flex; justify-content: space-around; padding-top: 10px; box-sizing: border-box">
+    <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 72px; color: #9AA0A6; text-decoration: none; font-size: 11px; font-weight: 600"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"></path></svg>Home</a>
+    <a href="PresetEditor.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 72px; color: #9AA0A6; text-decoration: none; font-size: 11px; font-weight: 600"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"></path></svg>Presets</a>
+    <a href="Progress.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 72px; color: #FF6A3D; text-decoration: none; font-size: 11px; font-weight: 600"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 15l4-4 3 3 6-6"></path></svg>Progress</a>
+    <a href="History.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; width: 72px; color: #9AA0A6; text-decoration: none; font-size: 11px; font-weight: 600"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>History</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

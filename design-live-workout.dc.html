@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Live workout</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;color:#F2F3F5;background:#0E0F11}
+a{color:#FF6A3D}a:hover{color:#FF8A66}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #0E0F11; box-sizing: border-box; padding: 52px 0 0; display: flex; flex-direction: column; gap: 12px; font-variant-numeric: tabular-nums">
+  <header style="display: flex; align-items: center; gap: 8px; height: 52px; padding: 0 16px">
+    <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0">
+      <span style="font-size: 18px; font-weight: 700">Lower Body Strength</span>
+      <span style="font-size: 13px; color: #9AA0A6">Elapsed 18:42 · 2 of 17 sets</span>
+    </div>
+    <button style="height: 44px; padding: 0 14px; border-radius: 22px; border: none; background: #1F2226; color: #F2F3F5; font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2 2M9 2h6"></path></svg>Rest</button>
+    <a href="Main.dc.html" style="height: 44px; padding: 0 16px; border-radius: 22px; background: #FF6A3D; color: #0E0F11; font-size: 15px; font-weight: 700; display: flex; align-items: center; text-decoration: none">Finish</a>
+  </header>
+
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 16px; height: 24px">
+    <span style="font-size: 13px; color: #9AA0A6">Exercise {{position}}</span>
+    <div aria-hidden="true" style="display: flex; align-items: center; gap: 5px">
+      <sc-for list="{{dots}}" as="dot" hint-placeholder-count="6">
+        <span style="display: block; height: 6px; border-radius: 3px; {{dot.style}}"></span>
+      </sc-for>
+    </div>
+  </div>
+
+  <div onScroll="{{onScroll}}" style="display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; padding: 0 16px; box-sizing: border-box; height: 540px; scrollbar-width: none">
+
+    <section aria-label="Back Squat" style="flex: 0 0 340px; scroll-snap-align: start; padding: 16px 12px; border-radius: 20px; background: #17191C; display: flex; flex-direction: column; gap: 10px; box-sizing: border-box">
+      <div style="display: flex; align-items: center; gap: 8px"><h2 style="margin: 0; font-size: 22px; font-weight: 700">Back Squat</h2><span style="font-size: 11px; font-weight: 700; padding: 3px 7px; border-radius: 6px; color: #9AA0A6; background: #24272B">WEIGHTED</span></div>
+      <span style="font-size: 13px; color: #9AA0A6">Last time (Nov 6): 225×5 · 225×5 · 225×4</span>
+      <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 4px 0 10px; border-radius: 12px; background: rgba(61,220,132,0.08)">
+        <span style="width: 20px; font-size: 14px; color: #9AA0A6">1</span>
+        <span style="flex-grow: 1; font-size: 17px; font-weight: 600">225 lb <span style="color: #9AA0A6; font-weight: 500">×</span> 5</span>
+        <button aria-label="Set 1 done" style="width: 44px; height: 40px; border-radius: 10px; border: none; background: #3DDC84; color: #0E0F11; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></button>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 4px 0 10px; border-radius: 12px; background: rgba(61,220,132,0.08)">
+        <span style="width: 20px; font-size: 14px; color: #9AA0A6">2</span>
+        <span style="flex-grow: 1; font-size: 17px; font-weight: 600">225 lb <span style="color: #9AA0A6; font-weight: 500">×</span> 5</span>
+        <button aria-label="Set 2 done" style="width: 44px; height: 40px; border-radius: 10px; border: none; background: #3DDC84; color: #0E0F11; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px; padding: 10px; border-radius: 14px; background: #1F2226; border: 1.5px solid #FF6A3D">
+        <span style="font-size: 13px; font-weight: 600; color: #FF6A3D">SET 3 · last time 225 × 4</span>
+        <div style="display: flex; align-items: center; gap: 6px">
+          <div style="display: flex; align-items: center; border-radius: 12px; background: #0E0F11">
+            <button aria-label="Weight minus 5" style="width: 38px; height: 52px; border: none; background: transparent; color: #F2F3F5; font-size: 24px">−</button>
+            <div style="width: 52px; display: flex; flex-direction: column; align-items: center"><span style="font-size: 20px; font-weight: 700">225</span><span style="font-size: 11px; color: #9AA0A6">lb</span></div>
+            <button aria-label="Weight plus 5" style="width: 38px; height: 52px; border: none; background: transparent; color: #F2F3F5; font-size: 24px">+</button>
+          </div>
+          <div style="display: flex; align-items: center; border-radius: 12px; background: #0E0F11">
+            <button aria-label="Reps minus 1" style="width: 34px; height: 52px; border: none; background: transparent; color: #F2F3F5; font-size: 24px">−</button>
+            <div style="width: 36px; display: flex; flex-direction: column; align-items: center"><span style="font-size: 20px; font-weight: 700">5</span><span style="font-size: 11px; color: #9AA0A6">reps</span></div>
+            <button aria-label="Reps plus 1" style="width: 34px; height: 52px; border: none; background: transparent; color: #F2F3F5; font-size: 24px">+</button>
+          </div>
+          <button aria-label="Complete set 3" style="width: 56px; height: 56px; margin-left: auto; border-radius: 14px; border: none; background: #FF6A3D; color: #0E0F11; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></button>
+        </div>
+      </div>
+      <button style="height: 44px; border-radius: 12px; border: none; background: transparent; color: #FF6A3D; font-size: 15px; font-weight: 600">+ Add set</button>
+      <span style="margin-top: auto; font-size: 13px; color: #9AA0A6; text-align: right">Swipe for Deadlift →</span>
+    </section>
+
+    <section aria-label="Deadlift" style="flex: 0 0 340px; scroll-snap-align: start; padding: 16px 12px; border-radius: 20px; background: #17191C; display: flex; flex-direction: column; gap: 10px; box-sizing: border-box">
+      <div style="display: flex; align-items: center; gap: 8px"><h2 style="margin: 0; font-size: 22px; font-weight: 700">Deadlift</h2><span style="font-size: 11px; font-weight: 700; padding: 3px 7px; border-radius: 6px; color: #9AA0A6; background: #24272B">WEIGHTED</span></div>
+      <span style="font-size: 13px; color: #9AA0A6">Last time (Nov 6): 275×5 · 275×5 · 275×5</span>
+      <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 4px 0 10px; border-radius: 12px; background: #1F2226"><span style="width: 20px; font-size: 14px; color: #9AA0A6">1</span><span style="flex-grow: 1; font-size: 17px; font-weight: 600; color: #C9CDD2">275 lb <span style="color: #9AA0A6; font-weight: 500">×</span> 5</span><button aria-label="Complete set 1" style="width: 44px; height: 40px; border-radius: 10px; border: 1.5px solid #3A3E44; background: transparent; color: #9AA0A6; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></button></div>
+      <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 4px 0 10px; border-radius: 12px; background: #1F2226"><span style="width: 20px; font-size: 14px; color: #9AA0A6">2</span><span style="flex-grow: 1; font-size: 17px; font-weight: 600; color: #C9CDD2">275 lb <span style="color: #9AA0A6; font-weight: 500">×</span> 5</span><button aria-label="Complete set 2" style="width: 44px; height: 40px; border-radius: 10px; border: 1.5px solid #3A3E44; background: transparent; color: #9AA0A6; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></button></div>
+      <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 4px 0 10px; border-radius: 12px; background: #1F2226"><span style="width: 20px; font-size: 14px; color: #9AA0A6">3</span><span style="flex-grow: 1; font-size: 17px; font-weight: 600; color: #C9CDD2">275 lb <span style="color: #9AA0A6; font-weight: 500">×</span> 5</span><button aria-label="Complete set 3" style="width: 44px; height: 40px; border-radius: 10px; border: 1.5px solid #3A3E44; background: transparent; color: #9AA0A6; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></button></div>
+      <button style="height: 44px; border-radius: 12px; border: none; background: transparent; color: #FF6A3D; font-size: 15px; font-weight: 600">+ Add set</button>
+    </section>
+
+    <section aria-label="Farmer's Carry" style="flex: 0 0 340px; scroll-snap-align: start; padding: 16px 12px; border-radius: 20px; background: #17191C; display: flex; flex-direction: column; gap: 10px; box-sizing: border-box">
+      <div style="display: flex; align-items: center; gap: 8px"><h2 style="margin: 0; font-size: 22px; font-weight: 700">Farmer's Carry</h2><span style="font-size: 11px; font-weight: 700; padding: 3px 7px; border-radius: 6px; color: #9AA0A6; background: #24272B">CARRY</span></div>
+      <span style="font-size: 13px; color: #9AA0A6">Last time (Nov 4): 70 lb × 40 yd · ×3</span>
+      <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 4px 0 10px; border-radius: 12px; background: #1F2226"><span style="width: 20px; font-size: 14px; color: #9AA0A6">1</span><span style="flex-grow: 1; font-size: 17px; font-weight: 600; color: #C9CDD2">70 lb <span style="color: #9AA0A6; font-weight: 500">×</span> 40 yd</span><button aria-label="Complete set 1" style="width: 44px; height: 40px; border-radius: 10px; border: 1.5px solid #3A3E44; background: transparent; color: #9AA0A6; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></button></div>
+      <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 4px 0 10px; border-radius: 12px; background: #1F2226"><span style="width: 20px; font-size: 14px; color: #9AA0A6">2</span><span style="flex-grow: 1; font-size: 17px; font-weight: 600; color: #C9CDD2">70 lb <span style="color: #9AA0A6; font-weight: 500">×</span> 40 yd</span><button aria-label="Complete set 2" style="width: 44px; height: 40px; border-radius: 10px; border: 1.5px solid #3A3E44; background: transparent; color: #9AA0A6; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></button></div>
+      <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 4px 0 10px; border-radius: 12px; background: #1F2226"><span style="width: 20px; font-size: 14px; color: #9AA0A6">3</span><span style="flex-grow: 1; font-size: 17px; font-weight: 600; color: #C9CDD2">70 lb <span style="color: #9AA0A6; font-weight: 500">×</span> 40 yd</span><button aria-label="Complete set 3" style="width: 44px; height: 40px; border-radius: 10px; border: 1.5px solid #3A3E44; background: transparent; color: #9AA0A6; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></button></div>
+      <button style="height: 44px; border-radius: 12px; border: none; background: transparent; color: #FF6A3D; font-size: 15px; font-weight: 600">+ Add set</button>
+    </section>
+
+    <section aria-label="Sled Push" style="flex: 0 0 340px; scroll-snap-align: start; padding: 16px 12px; border-radius: 20px; background: #17191C; display: flex; flex-direction: column; gap: 10px; box-sizing: border-box">
+      <div style="display: flex; align-items: center; gap: 8px"><h2 style="margin: 0; font-size: 22px; font-weight: 700">Sled Push</h2><span style="font-size: 11px; font-weight: 700; padding: 3px 7px; border-radius: 6px; color: #9AA0A6; background: #24272B">DISTANCE</span></div>
+      <span style="font-size: 13px; color: #9AA0A6">Last time (Nov 4): 180 lb × 20 yd · ×4</span>
+      <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 4px 0 10px; border-radius: 12px; background: #1F2226"><span style="width: 20px; font-size: 14px; color: #9AA0A6">1</span><span style="flex-grow: 1; font-size: 17px; font-weight: 600; color: #C9CDD2">20 yd <span style="color: #9AA0A6; font-weight: 500">@</span> 180 lb</span><button aria-label="Complete set 1" style="width: 44px; height: 40px; border-radius: 10px; border: 1.5px solid #3A3E44; background: transparent; color: #9AA0A6; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></button></div>
+      <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 4px 0 10px; border-radius: 12px; background: #1F2226"><span style="width: 20px; font-size: 14px; color: #9AA0A6">2</span><span style="flex-grow: 1; font-size: 17px; font-weight: 600; color: #C9CDD2">20 yd <span style="color: #9AA0A6; font-weight: 500">@</span> 180 lb</span><button aria-label="Complete set 2" style="width: 44px; height: 40px; border-radius: 10px; border: 1.5px solid #3A3E44; background: transparent; color: #9AA0A6; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></button></div>
+      <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 4px 0 10px; border-radius: 12px; background: #1F2226"><span style="width: 20px; font-size: 14px; color: #9AA0A6">3</span><span style="flex-grow: 1; font-size: 17px; font-weight: 600; color: #C9CDD2">20 yd <span style="color: #9AA0A6; font-weight: 500">@</span> 180 lb</span><button aria-label="Complete set 3" style="width: 44px; height: 40px; border-radius: 10px; border: 1.5px solid #3A3E44; background: transparent; color: #9AA0A6; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></button></div>
+      <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 4px 0 10px; border-radius: 12px; background: #1F2226"><span style="width: 20px; font-size: 14px; color: #9AA0A6">4</span><span style="flex-grow: 1; font-size: 17px; font-weight: 600; color: #C9CDD2">20 yd <span style="color: #9AA0A6; font-weight: 500">@</span> 180 lb</span><button aria-label="Complete set 4" style="width: 44px; height: 40px; border-radius: 10px; border: 1.5px solid #3A3E44; background: transparent; color: #9AA0A6; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></button></div>
+      <button style="height: 44px; border-radius: 12px; border: none; background: transparent; color: #FF6A3D; font-size: 15px; font-weight: 600">+ Add set</button>
+    </section>
+
+    <section aria-label="Plank" style="flex: 0 0 340px; scroll-snap-align: start; padding: 16px 12px; border-radius: 20px; background: #17191C; display: flex; flex-direction: column; gap: 10px; box-sizing: border-box">
+      <div style="display: flex; align-items: center; gap: 8px"><h2 style="margin: 0; font-size: 22px; font-weight: 700">Plank</h2><span style="font-size: 11px; font-weight: 700; padding: 3px 7px; border-radius: 6px; color: #9AA0A6; background: #24272B">TIMED</span></div>
+      <span style="font-size: 13px; color: #9AA0A6">Last time (Nov 6): 1:00 · 1:00 · 0:50</span>
+      <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 4px 0 10px; border-radius: 12px; background: #1F2226"><span style="width: 20px; font-size: 14px; color: #9AA0A6">1</span><span style="flex-grow: 1; font-size: 17px; font-weight: 600; color: #C9CDD2">1:00</span><button aria-label="Complete set 1" style="width: 44px; height: 40px; border-radius: 10px; border: 1.5px solid #3A3E44; background: transparent; color: #9AA0A6; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></button></div>
+      <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 4px 0 10px; border-radius: 12px; background: #1F2226"><span style="width: 20px; font-size: 14px; color: #9AA0A6">2</span><span style="flex-grow: 1; font-size: 17px; font-weight: 600; color: #C9CDD2">1:00</span><button aria-label="Complete set 2" style="width: 44px; height: 40px; border-radius: 10px; border: 1.5px solid #3A3E44; background: transparent; color: #9AA0A6; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></button></div>
+      <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 4px 0 10px; border-radius: 12px; background: #1F2226"><span style="width: 20px; font-size: 14px; color: #9AA0A6">3</span><span style="flex-grow: 1; font-size: 17px; font-weight: 600; color: #C9CDD2">1:00</span><button aria-label="Complete set 3" style="width: 44px; height: 40px; border-radius: 10px; border: 1.5px solid #3A3E44; background: transparent; color: #9AA0A6; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></button></div>
+      <button style="height: 44px; border-radius: 12px; border: none; background: transparent; color: #FF6A3D; font-size: 15px; font-weight: 600">+ Add set</button>
+    </section>
+
+    <section aria-label="Run" style="flex: 0 0 340px; scroll-snap-align: start; padding: 16px 12px; border-radius: 20px; background: #17191C; display: flex; flex-direction: column; gap: 10px; box-sizing: border-box">
+      <div style="display: flex; align-items: center; gap: 8px"><h2 style="margin: 0; font-size: 22px; font-weight: 700">Run</h2><span style="font-size: 11px; font-weight: 700; padding: 3px 7px; border-radius: 6px; color: #9AA0A6; background: #24272B">CARDIO</span></div>
+      <span style="font-size: 13px; color: #9AA0A6">Last time (Nov 6): 1.00 mi in 9:30 · 9:30 /mi</span>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <label for="runTime" style="font-size: 12px; color: #9AA0A6">Time</label>
+          <input id="runTime" value="9:12" inputmode="numeric" style="height: 52px; border-radius: 12px; border: 1px solid #2A2D32; background: #0E0F11; color: #F2F3F5; font-size: 20px; font-weight: 700; text-align: center; box-sizing: border-box; width: 100%">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <label for="runDist" style="font-size: 12px; color: #9AA0A6">Distance (mi)</label>
+          <input id="runDist" value="1.00" inputmode="decimal" style="height: 52px; border-radius: 12px; border: 1px solid #2A2D32; background: #0E0F11; color: #F2F3F5; font-size: 20px; font-weight: 700; text-align: center; box-sizing: border-box; width: 100%">
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between">
+        <span style="font-size: 15px; color: #9AA0A6">Pace <span style="color: #F2F3F5; font-weight: 700">9:12 /mi</span></span>
+        <button aria-label="Complete run" style="width: 56px; height: 56px; border-radius: 14px; border: none; background: #FF6A3D; color: #0E0F11; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></button>
+      </div>
+      <button style="margin-top: auto; height: 52px; border-radius: 14px; border: 1.5px dashed #3A3E44; background: transparent; color: #FF6A3D; font-size: 16px; font-weight: 600">+ Add exercise</button>
+    </section>
+  </div>
+
+  <div role="timer" aria-label="Rest timer, 1 minute 12 seconds left" style="position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 16px 30px; background: #1F2226; border-top: 1px solid #2E3238; display: flex; flex-direction: column; gap: 12px; box-sizing: border-box">
+    <div style="height: 6px; border-radius: 3px; background: #0E0F11; overflow: hidden"><div style="width: 80%; height: 6px; background: #FF6A3D"></div></div>
+    <div style="display: flex; align-items: center; gap: 10px">
+      <button aria-label="Edit rest length" style="flex-grow: 1; border: none; background: transparent; color: #F2F3F5; text-align: left; padding: 0; display: flex; flex-direction: column; gap: 0">
+        <span style="font-size: 12px; font-weight: 700; color: #9AA0A6; letter-spacing: 0.6px">REST · of 1:30</span>
+        <span style="font-size: 40px; font-weight: 700; line-height: 1.1">1:12</span>
+      </button>
+      <button style="width: 60px; height: 52px; border-radius: 12px; border: none; background: #0E0F11; color: #F2F3F5; font-size: 15px; font-weight: 600">−15s</button>
+      <button style="width: 60px; height: 52px; border-radius: 12px; border: none; background: #0E0F11; color: #F2F3F5; font-size: 15px; font-weight: 600">+15s</button>
+      <button style="width: 64px; height: 52px; border-radius: 12px; border: none; background: #FF6A3D; color: #0E0F11; font-size: 15px; font-weight: 700">Skip</button>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+var names = ['Back Squat', 'Deadlift', "Farmer’s Carry", 'Sled Push', 'Plank', 'Run'];
+var idx = (this.state && this.state.idx) || 0;
+var self = this;
+return {
+position: (idx + 1) + ' of ' + names.length + ' · ' + names[idx],
+dots: names.map(function (n, i) {
+return { style: i === idx ? 'width: 18px; background: #FF6A3D' : 'width: 6px; background: #3A3E44' };
+}),
+onScroll: function (e) {
+var i = Math.round(e.currentTarget.scrollLeft / 350);
+if (i < 0) i = 0;
+if (i > names.length - 1) i = names.length - 1;
+if (i !== idx) self.setState({ idx: i });
+}
+};
+}
+}
+</script>
+</body>
+</html>
